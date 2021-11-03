@@ -18,6 +18,6 @@ The `=` button is used to get the result of a calculation. Non-touch-device user
 
 ## How it Works
 
-First of all, the input is autocorrected and the brackets solved. Regexes are used to calculate the result. For each of the operators, in order of BIDMAS, a regex search is made. For each of the matches found for the operator regex, the numbers are extracted and calculated. In the input string, the match is replaced with the calculation of the numbers.
+First of all, the input is autocorrected and the brackets solved. Regexes are used to calculate the result. For each of the operators, in order of `BIDMAS`, a regex search is made. For each of the matches found for the operator regex, the numbers are extracted and calculated. In the input string, the match is replaced with the calculation of the numbers.
 
 *Note: The regex for a decimal, negative, or scientific notation number is longer than `\d+`. `\d+` has been used just for explanation. It will only work for whole numbers.*
