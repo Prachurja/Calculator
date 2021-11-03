@@ -10,7 +10,7 @@ It is responsive and optimised for touch-device users. They can only change the 
 
 The `=` button is used to get the result of a calculation. Non-touch-device users can also press `Enter`. If the result is successful, the input area would blink green. If otherwise, it would blink red.
 
-## Architecture
+## How it Works
 A textarea is used for receiving input. It listens to the `onkeydown` event to check if the user presses `Enter`. If so, the result is shown.
 
 Buttons are used to append to the caret position in the textarea, except for the `DEL` and `AC` keys.
