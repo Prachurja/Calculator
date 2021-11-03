@@ -2,7 +2,8 @@
 This is a simple static calculator made with vanilla JS, plain CSS and HTML.
 
 ## Features
-<img src="https://ibb.co/dW78gdW" alt="calculator-image">
+<img src="https://i.ibb.co/0DQHtgD/ezgif-3-2f86c3f200ae.gif">
+
 It has all the features of a regular non-scientific calculator - brackets, division, multiplication, addition, subtraction and decimals, as well as `DEL` and `AC`.
 
 It is responsive and optimised for touch-device users. They can only change the cursor position and input using the buttons in the calculator. Non-touch-device users on the other hand can type freely.
