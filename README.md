@@ -14,7 +14,7 @@ It has all the features of a regular non-scientific calculator - brackets, divis
 
 ## How it Works
 
-First of all, the input string is auto-corrected and the brackets solved. It iterates over a list of operators. Each operator has an `operate` function. In the input, the match is replaced with the output of the `operate` function called on the match.
+First of all, the input string is auto-corrected and the brackets solved. It iterates over a list of `Operator`s. Each `Operator` has an `operate` function. In the input, the match is replaced with the output of the `operate` function called on the match.
 
 <img src="https://user-images.githubusercontent.com/87853925/140262989-141964da-3e36-46a9-9b3d-a9ee5b161f42.png" height=120>
 
