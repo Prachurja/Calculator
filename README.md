@@ -18,6 +18,6 @@ The `=` button is used to get the result of a calculation. Non-touch-device user
 
 ## How it Works
 
-First of all, the input is autocorrected and the brackets solved. Regexes are used to calculate the result. For each of the operators, in order of `BIDMAS`, a regex search is made. For each of the matches found for the operator regex, the numbers are extracted and calculated. In the input string, the match is replaced with the calculation of the numbers.
+The `Operator` class has a regex and an `operate` method. The `operate` method takes in an input string and finds all regex matches for the `Operator`. For each of the regex matches, all the numbers are taken and passed into the `solve` method from by the class parameters. In the input string, the regex match is replaced with the result we got from the `solve` method. This step is repeated until there are no more matches for the `Operator` regex.
 
-*Note: The regex for a decimal, negative, or scientific notation number is longer than `\d+`. `\d+` has been used just for explanation. It will only work for whole numbers.*
+In the code, there is a list of `Operator`s (ordered by `BIDMAS`). The `calculate` method iterates through the list. For each `Operator`, the `operate` method is called on the input string (which is firstly auto-corrected and the brackets solved using the same `calculate` method (recursion)). The input string is then returned.
