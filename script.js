@@ -8,7 +8,7 @@ const temp = `((?<!(\\)|\\d))(-|\\+)?)\\d+(\\.\\d+)?`,
 numRegex = `(${temp}e(-|\\+)?\\d+|${temp}|Infinity)`
 
 class Operator {
-    constructor(symbols, gridArea, operate, regex) {
+    constructor(symbols, gridArea, solve, regex) {
         if(symbols && gridArea) {
             createBtn(symbols[0], gridArea) //custom method
             regex = regex == null ? (numRegex + `(${symbols.map(symbol => symbol.split("").map(c => "\\" + c).join("")).join("|")})` + numRegex) : regex
@@ -25,7 +25,7 @@ class Operator {
                 
                 if(matches) {
                     matches.forEach(match => {
-                        const nums = match.match(new RegExp(numRegex, "g")).map(n => parseFloat(n)), replacement = operate(...nums)
+                        const nums = match.match(new RegExp(numRegex, "g")).map(n => parseFloat(n)), replacement = solve(...nums)
                         toOperate = toOperate.replace(match, (!isNaN(replacement) ? (replacement >= 0 ? "+" : "") + replacement : replacement))
                     })
 
