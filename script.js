@@ -8,13 +8,9 @@ const temp = `((?<!(\\)|\\d))(-|\\+)?)\\d+(\\.\\d+)?`,
 numRegex = `(${temp}e(-|\\+)?\\d+|${temp}|Infinity)`
 
 class Operator {
-    constructor(symbols, gridArea, solve, regex) {
-        if(symbols && gridArea) {
-            createBtn(symbols[0], gridArea) //custom method
-            regex = regex == null ? (numRegex + `(${symbols.map(symbol => symbol.split("").map(c => "\\" + c).join("")).join("|")})` + numRegex) : regex
-        }
-
-        regex = new RegExp(regex, "g")
+    constructor(symbols, gridArea, solve) {
+        createBtn(symbols[0], gridArea)
+        const regex = new RegExp(numRegex + `(${symbols.map(symbol => symbol.split("").map(c => "\\" + c).join("")).join("|")})` + numRegex, "g")
 
         this.operate = toOperate => {
             let foundMatch = toOperate.match(regex)
@@ -83,7 +79,6 @@ function solveBrkts(toSolve) {
 }
 
 const operators = new Array(
-    new Operator(null, null, (a, b, c) => (a*c)/b, `${numRegex}(\\/|÷)${numRegex}(\\*|x)${numRegex}`),
     new Operator(["÷", "/"], "dvd", (a, b) => a / b),
     new Operator(["x", "*"], "mltp", (a, b) => a * b),
     new Operator(["+"], "plus", (a, b) => a + b),
