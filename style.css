@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 
-:root {
-    --bg-1: #150a56;
-    --io-fsize: 0.9em;
-}
-
 *, *::before, *::after {
     font-family: Oswald;
     font-size: 5vh;
@@ -18,11 +13,11 @@ body {
     align-items: center;
     height: 97.9vh;
 
-    background-image: linear-gradient(to right, var(--bg-1), #54FBDD);
+    background-image: linear-gradient(to right, #150a56, #54FBDD);
 }
 
 .calc-grid {
-    width: 10em;
+    width: 10rem;
 
     display: grid;
     grid-template-areas:
@@ -34,29 +29,29 @@ body {
     "n1 n2 n3 plus"
     "n0 pnt ans ans";
     place-items: center;
-    gap: 0.2em;
+    gap: 0.2rem;
 
-    grid-template-rows: 4em 0.1em repeat(5, 2em);
+    grid-template-rows: 4rem 0.1rem repeat(5, 2rem);
     grid-auto-columns: 1fr;
 }
 
 .calc-grid > * {
-    border-radius: 0.2em;
+    border-radius: 0.2rem;
     width: 100%;
     height: 100%;
 }
 
 button {
     border: none;
-    background-color: var(--bg-1);
+    background-color: #150a56;
 }
 
 textarea {
     border: #150a5611 solid;
     background-color: #40ceca87;
     text-align: right;
-    font-size: var(--io-fsize);
-    padding: 0.2em;
+    font-size: 0.9rem;
+    padding: 0.2rem;
     resize: none;
 }
 
@@ -83,10 +78,10 @@ textarea:focus {
 }
 
 textarea::-webkit-scrollbar {
-    width: 0.35em;
+    width: 0.35rem;
 }
 
 textarea::-webkit-scrollbar-thumb {
     background-color: #110b3380;
-    border-radius: 1em;
+    border-radius: 1rem;
 }
