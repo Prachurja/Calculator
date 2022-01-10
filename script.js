@@ -154,9 +154,9 @@ createBtn("()", "brkt")
 
 io.style.gridArea = "io"
 io.className = "io"
-io.autocapitalize= "none"
-io.autocorrect= "none"
-io.autocomplete= "none"
+io.autocapitalize= "off"
+io.autocorrect= "off"
+io.autocomplete= "off"
 io.spellcheck= false
 
 grid.append(io)
@@ -167,4 +167,4 @@ let touchDevice = false
 
 io.ontouchstart = () => touchDevice = true
 window.onresize = () => touchDevice = false
-io.onblur = () => if(touchDevice) io.focus()
+io.onblur = () => { if(touchDevice) io.focus() }
