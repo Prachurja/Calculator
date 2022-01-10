@@ -167,4 +167,4 @@ let touchDevice = false
 
 document.ontouchstart = () => touchDevice = true
 window.onresize = () => touchDevice = false
-io.onfocus = e => { if(touchDevice) e.preventDefault() }
+io.onfocus = e => { if(touchDevice) e.blur() }
