@@ -1,4 +1,4 @@
-//The "Cannot access before initialization"
+//The "Cannot access before initialization"s
 const grid = document.querySelector(".calc-grid"),
 io = document.createElement("textarea")
 
