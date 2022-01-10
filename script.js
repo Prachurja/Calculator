@@ -155,10 +155,8 @@ io.className = "io"
 io.autocapitalize= "none"
 io.autocorrect= "none"
 io.autocomplete= "none"
+io.autofocus = true
 io.spellcheck= false
+io.onblur = () => io.focus()
 
 grid.append(io)
-
-
-//Keeping textarea always focused (cause switching in and out of focus is just bad UX (for mobile users))
-io.onblur = () => io.focus()
