@@ -131,6 +131,7 @@ function createBtn(innerText, gridArea, onclick) {
         const start = io.selectionStart, end = io.selectionEnd
         io.value = io.value.substring(0, start) + innerText.toString() + io.value.substring(end, io.value.length)
         io.selectionStart = io.selectionEnd = end + 1
+        io.focus()
     })
 
     grid.appendChild(btn)
@@ -146,17 +147,17 @@ createBtn("DEL", "del", () => {
     const end = io.selectionEnd
     io.value = io.value.substring(0, end - 1) + io.value.substring(end, io.value.length)
     io.selectionStart = io.selectionEnd = end - 1
+    io.focus()
 })
 createBtn(".", "pnt")
 createBtn("()", "brkt")
 
 io.style.gridArea = "io"
 io.className = "io"
-io.autocapitalize = "off"
-io.autocorrect = "off"
-io.autocomplete = "off"
-io.autofocus = true
-io.spellcheck = false
+io.autocapitalize= "none"
+io.autocorrect= "none"
+io.autocomplete= "none"
+io.spellcheck= false
 
 grid.append(io)
 
