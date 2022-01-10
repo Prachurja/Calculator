@@ -2,7 +2,6 @@
 const grid = document.querySelector(".calc-grid"),
 io = document.createElement("textarea")
 
-console.log("test)
 
 //Calculation stuff
 const temp = `((?<!(\\)|\\d))(-|\\+)?)\\d+(\\.\\d+)?`,
