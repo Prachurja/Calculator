@@ -157,6 +157,10 @@ io.autocorrect = "off"
 io.autocomplete = "off"
 io.autofocus = true
 io.spellcheck = false
-io.onblur = () => io.focus()
+
+let touchDevice = false
+io.ontouchstart = () => touchDevice = true
+window.onresize = () => touchDevice = false
+io.onblur = () => if(touchDevice) io.focus()
 
 grid.append(io)
