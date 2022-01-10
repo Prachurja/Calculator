@@ -164,8 +164,7 @@ grid.append(io)
 
 //Touch device adjustments
 let touchDevice = false
-io.autofocus = true
 
 document.ontouchstart = () => touchDevice = true
 window.onresize = () => touchDevice = false
-io.onblur = () => { if(touchDevice) io.focus() }
+io.onfocus = e => e.preventDefault()
