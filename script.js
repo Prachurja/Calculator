@@ -158,9 +158,12 @@ io.autocomplete = "off"
 io.autofocus = true
 io.spellcheck = false
 
+grid.append(io)
+
+
+//Touch device adjustments
 let touchDevice = false
+
 io.ontouchstart = () => touchDevice = true
 window.onresize = () => touchDevice = false
 io.onblur = () => if(touchDevice) io.focus()
-
-grid.append(io)
