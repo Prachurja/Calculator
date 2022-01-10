@@ -152,11 +152,11 @@ createBtn("()", "brkt")
 
 io.style.gridArea = "io"
 io.className = "io"
-io.autocapitalize= "none"
-io.autocorrect= "none"
-io.autocomplete= "none"
+io.autocapitalize = "off"
+io.autocorrect = "off"
+io.autocomplete = "off"
 io.autofocus = true
-io.spellcheck= false
+io.spellcheck = false
 io.onblur = () => io.focus()
 
 grid.append(io)
