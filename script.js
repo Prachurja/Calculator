@@ -34,7 +34,6 @@ class Operator {
     }
 }
 
-
 function autoCorrect(toAutoCorrect) {
     toAutoCorrect = toAutoCorrect.toLowerCase().replaceAll(" ", "").replaceAll("∞", "Infinity").replaceAll("infinity", "Infinity")
     
@@ -155,13 +154,27 @@ createBtn("()", "brkt")
 
 io.style.gridArea = "io"
 io.className = "io"
-io.autocapitalize= "off"
-io.autocorrect= "off"
-io.autocomplete= "off"
+io.autocapitalize= "none"
+io.autocorrect= "none"
+io.autocomplete= "none"
 io.spellcheck= false
 
 grid.append(io)
 
 
 //Touch device adjustments
-document.ontouchstart = () => io.readOnly = true
+let touchDevice = false
+
+io.ontouchstart = () => {
+    io.readOnly = false
+    touchDevice = true
+}
+
+io.onfocus = () => {
+    if(touchDevice) {
+        io.readOnly = true
+        io.blur()
+    }
+}
+
+window.onresize = () => io.readOnly = touchDevice = false
