@@ -131,7 +131,6 @@ function createBtn(innerText, gridArea, onclick) {
         const start = io.selectionStart, end = io.selectionEnd
         io.value = io.value.substring(0, start) + innerText.toString() + io.value.substring(end, io.value.length)
         io.selectionStart = io.selectionEnd = end + 1
-        io.focus()
     })
 
     grid.appendChild(btn)
@@ -147,7 +146,6 @@ createBtn("DEL", "del", () => {
     const end = io.selectionEnd
     io.value = io.value.substring(0, end - 1) + io.value.substring(end, io.value.length)
     io.selectionStart = io.selectionEnd = end - 1
-    io.focus()
 })
 createBtn(".", "pnt")
 createBtn("()", "brkt")
@@ -162,19 +160,5 @@ io.spellcheck= false
 grid.append(io)
 
 
-//Touch device adjustments
-let touchDevice = false
-
-io.ontouchstart = () => {
-    setTimeout(() => io.removeAttribute("readOnly"), 100)
-    touchDevice = true
-}
-
-io.onfocus = () => {
-    if(touchDevice) {
-        io.readOnly = true
-        setTimeout(() => io.blur(), 80)
-    }
-}
-
-window.onresize = () => io.readOnly = touchDevice = false
+//Keep textarea always focused (cause switching in and out of focus is just bad UX (for mobile users))
+io.onblur = (event) => event.preventDefault()
