@@ -160,5 +160,5 @@ io.spellcheck= false
 grid.append(io)
 
 
-//Keep textarea always focused (cause switching in and out of focus is just bad UX (for mobile users))
-io.onblur = (event) => event.preventDefault()
+//Keeping textarea always focused (cause switching in and out of focus is just bad UX (for mobile users))
+io.onblur = () => io.focus()
