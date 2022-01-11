@@ -80,7 +80,7 @@ function solveBrkts(toSolve) {
 }
 
 const operators = new Array(
-    new Operator(["÷", "/"], "dvd", (a, b) => a / b),
+    new Operator(["÷", "/"], "dvd", (a, b) => a == 0 || b == 0 ? 0 : a / b),
     new Operator(["x", "*"], "mltp", (a, b) => a * b),
     new Operator(["+"], "plus", (a, b) => a + b),
     new Operator(["-"], "mns", (a, b) => a - b)
