@@ -161,7 +161,3 @@ io.autocomplete= "off"
 io.spellcheck= false
 
 grid.append(io)
-
-
-//Touch device adjustments
-document.ontouchstart = () => io.readOnly = true
