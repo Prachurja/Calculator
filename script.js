@@ -35,6 +35,7 @@ class Operator {
 }
 
 
+
 function autoCorrect(toAutoCorrect) {
     toAutoCorrect = toAutoCorrect.toLowerCase().replaceAll(" ", "").replaceAll("∞", "Infinity").replaceAll("infinity", "Infinity")
     
