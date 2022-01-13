@@ -24,4 +24,4 @@ First of all, the input string is auto-corrected and the brackets solved. It ite
 
 <img src="https://user-images.githubusercontent.com/87853925/140262893-fc1e61bb-1f5c-46e5-8fb9-e78d442a9359.png" height=50>
 
-You might get some weird results for floating point math. For instance, [if you add `0.1` to `0.2`, it returns `0.30000000000000004`](https://www.youtube.com/watch?v=s9F8pu5KfyM).*
+You might get some weird results for floating point math. For instance, [if you add `0.1` to `0.2`, it returns `0.30000000000000004`](https://www.youtube.com/watch?v=s9F8pu5KfyM).
