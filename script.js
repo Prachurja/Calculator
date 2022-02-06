@@ -2,6 +2,10 @@
 const grid = document.querySelector(".calc-grid"),
 io = document.createElement("textarea")
 
+io.style.gridArea = "io"
+io.className = "io"
+io.disabled = true
+
 
 //Calculation stuff
 const temp = `((?<!(\\)|\\d))(-|\\+)?)\\d+(\\.\\d+)?`,
@@ -9,7 +13,7 @@ numRegex = `(${temp}e(-|\\+)?\\d+|${temp}|Infinity)`
 
 class Operator {
     constructor(symbols, gridArea, solve) {
-        createBtn(symbols[0], gridArea)
+        createSingleButton(symbols[0], gridArea)
         const regex = new RegExp(numRegex + `(${symbols.map(symbol => symbol.split("").map(c => "\\" + c).join("")).join("|")})` + numRegex, "g")
 
         this.operate = toOperate => {
@@ -105,7 +109,7 @@ function blink(clr) {
     })
 }
 
-const ans = createBtn("=", "ans", () => {
+const ans = createSingleButton("=", "ans", () => {
     const result = calculate(io.value)
     
     if(!isNaN(result)) {
@@ -116,49 +120,58 @@ const ans = createBtn("=", "ans", () => {
     else blink("#f25a49")
 })
 
-io.onkeydown = (event) => {
-    if(event.key == "Enter") {
-        ans.click()
-        event.preventDefault()
-    }
-}
-
 
 //UI stuff
-function createBtn(innerText, gridArea, onclick) {
-    const btn = document.createElement("button")
-    btn.innerText = innerText
-    btn.style.gridArea = gridArea
-    btn.onclick = onclick || (() => {
-        const start = io.selectionStart, end = io.selectionEnd
-        io.value = io.value.substring(0, start) + innerText.toString() + io.value.substring(end, io.value.length)
-        io.selectionStart = io.selectionEnd = end + 1
-        io.focus()
-    })
+function createButton(innerText, gridArea, onclick) {
+    const button = document.createElement("button")
+    button.innerText = innerText
+    button.style.gridArea = gridArea
+    button.onclick = onclick || (() => io.value += innerText)
+    button.classList.add("calc-btn", gridArea)
 
-    grid.appendChild(btn)
-    return btn
+    return button
+}
+
+function createSingleButton(innerText, gridArea, onclick) {
+    const button = createButton(innerText, gridArea, onclick)
+    grid.appendChild(button)
+    return button
+}
+
+function createCompoundButton(buttons, gridArea) {
+    const compoundButton = document.createElement("div")
+    compoundButton.style.gridArea = gridArea
+    compoundButton.classList.add(gridArea)
+    buttons.forEach(button => compoundButton.appendChild(button))
+    grid.appendChild(compoundButton)
+    return compoundButton
 }
 
 for(let n = 0; n <= 9; n++) {
-    createBtn(n, `n${n}`)
+    createSingleButton(n, `n${n}`)
 }
 
-createBtn("AC", "ac", () => io.value = "")
-createBtn("DEL", "del", () => {
-    const end = io.selectionEnd
-    io.value = io.value.substring(0, end - 1) + io.value.substring(end, io.value.length)
-    io.selectionStart = io.selectionEnd = end - 1
-    io.focus()
-})
-createBtn(".", "pnt")
-createBtn("()", "brkt")
-
-io.style.gridArea = "io"
-io.className = "io"
-io.autocapitalize= "off"
-io.autocorrect= "off"
-io.autocomplete= "off"
-io.spellcheck= false
+createSingleButton("AC", "ac", () => io.value = "")
+const del = createSingleButton("DEL", "del", () => io.value = io.value.slice(0, -1))
+createSingleButton(".", "pnt")
+createCompoundButton([createButton("(", "firstBrkt"), createButton(")", "secondBrkt")], "brkt")
 
 grid.append(io)
+
+document.onkeydown = (event => {
+    switch(event.key) {
+        case "Enter":
+            ans.click()
+            break
+        case "Backspace": case "Delete":
+            if(io.value.length > 0) del.click()
+            break
+        default:
+            if(!event.ctrlKey && event.key.length == 1) io.value += event.key
+    }
+})
+
+document.onpaste = (event => {
+    event.preventDefault()
+    io.value += event.clipboardData.getData("text")
+})
